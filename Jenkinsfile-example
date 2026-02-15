@@ -33,12 +33,12 @@ pipeline {
         }
     }
 
-    post {
-        success {
-            notifySlack("Deployment Successful 🚀")
-        }
-        failure {
-            notifySlack("Deployment Failed ❌")
-        }
-    }
+    // post {
+    //     success {
+    //         notifySlack("Deployment Successful 🚀")
+    //     }
+    //     failure {
+    //         notifySlack("Deployment Failed ❌")
+    //     }
+    // }
 }
