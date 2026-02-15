@@ -1,4 +1,4 @@
-@Library('company-ci-library@v1.0.0') _
+@Library('company-ci-library@main') _
 
 pipeline {
     agent any
