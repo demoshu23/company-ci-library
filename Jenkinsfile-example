@@ -2,6 +2,10 @@
 
 pipeline {
     agent any
+    tools {
+        // Use exact names from Manage Jenkins → Global Tool Configuration
+        maven 'maven-3'     // example: change to match your Maven tool name
+    }
 
     environment {
         IMAGE_NAME = "company/sample-app"
