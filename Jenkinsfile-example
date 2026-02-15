@@ -1,0 +1,40 @@
+@Library('company-ci-library@v1.0.0') _
+
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME = "company/sample-app"
+        IMAGE_TAG = "${env.BUILD_NUMBER}"
+    }
+
+    stages {
+
+        stage('Build') {
+            steps {
+                buildApp()
+            }
+        }
+
+        stage('Docker') {
+            steps {
+                dockerBuild(IMAGE_NAME, IMAGE_TAG)
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                deployK8s(IMAGE_NAME, IMAGE_TAG)
+            }
+        }
+    }
+
+    post {
+        success {
+            notifySlack("Deployment Successful 🚀")
+        }
+        failure {
+            notifySlack("Deployment Failed ❌")
+        }
+    }
+}
